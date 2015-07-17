@@ -1,0 +1,68 @@
+body {
+	background-color: #c0c0c0;
+}
+
+
+.jumbotron {
+	background-color: #000080;
+	padding-top: 5px;
+
+}
+
+.jumbotron h1
+{
+	color: #EEEEEE;
+}
+
+
+td {
+	width: 60px;
+  height: 60px;    
+} 
+
+.btn .btn-primary .btn-fire
+{
+	background-color: #A00010;
+	color: #EEEEEE; 
+}
+
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+
+input[type=radio]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(3); /* IE */
+  -moz-transform: scale(3); /* FF */
+  -webkit-transform: scale(3); /* Safari and Chrome */
+  -o-transform: scale(3); /* Opera */
+  padding: 10px;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.container{
+    text-align: center;
+}
+
+
+
+table {
+    display: inline-block;
+}

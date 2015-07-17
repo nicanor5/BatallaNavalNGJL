@@ -1,0 +1,8 @@
+.ficha{width:150px;height:150px;}
+.boton{width:100%;height:100%;font-size:5em;margin:0px;}
+.centrado{margin:0 auto;text-align: center;}
+.error{color:red;}
+.invisible{display:none;}
+table{margin:0 auto;border:4px solid #000077;background:#aaaabb;cellpadding:0px;border-collapse: collapse;}
+td{border:0px solid #eeeeee;padding:0px;}
+div{text-align:center;}
