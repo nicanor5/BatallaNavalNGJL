@@ -42,5 +42,7 @@ require(TMVC_BASEDIR . 'sysfiles' . DS . 'TinyMVC.php');
 /* instantiate */
 $tmvc = new tmvc();
 
+// Esto es una prueba
+
 /* tally-ho! */
 $tmvc->main();
