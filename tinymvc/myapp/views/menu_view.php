@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<p>  Choose the battlefield dimensions </p> <br>
+		<p>  Main menu </p> <br>
 		<p> <?php if(isset($toView["mensaje"])) echo $toView["mensaje"]; ?> </p>
 	</div>
 </div>
@@ -24,27 +24,9 @@
 	<div class="col-md-6">
 		<div class="row">
 			<div class="col-md-12">
-				<p>  Choose the battlefield dimensions </p> <br>
-			</div>
-		</div>		
-		<div class="row">
-			<div class="col-md-12">
-				<form method="post" action='<?=TMVC_BASEURL?>/batallanaval/init_field'>
-					<button class="btn btn-fire" type="submit" value="Start">Set the fleet</button>
-					<br>
-					<select name="size">
-						<option value="5"> A: 5x5 </option>
-						<option value="6"> B: 6x6 </option>
-					</select>
-				</form>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-md-12">
 				<form method="post" action='<?=TMVC_BASEURL?>/users/statistics'>
 					<button class="btn " type="submit" value="Stats">Statistics</button>
-					<input type="hidden" name="activity" value="modify_reg">
+					<input type="hidden" name="activity" value="statistics">
 				</form>
 			</div>
 		</div>
@@ -53,7 +35,7 @@
 			<div class="col-md-12">
 				<form method="post" action='<?=TMVC_BASEURL?>/users/ranking'>
 					<button class="btn " type="submit" value="Ranking">Ranking</button>
-					<input type="hidden" name="activity" value="modify_reg">
+					<input type="hidden" name="activity" value="ranking">
 				</form>
 			</div>
 		</div>
@@ -75,7 +57,18 @@
 				</form>
 			</div>
 		</div>
-
-
+		<div class="row">
+			<div class="col-md-12">
+				<?php 
+				if ($data['type']==0) 
+				{
+					echo '<form method="post" action="<?=TMVC_BASEURL?>/admin/adminMenu">
+							<button class="btn " type="submit" value="Admin">Administration menu</button>
+							<input type="hidden" name="activity" value="admin_menu"></form>';
+				}
+				?>
+			</div>
+		</div>
+		<br>
 	</div>
 </div>

@@ -5,4 +5,4 @@ Autores: Nicanor García Ospina y Juan Esteban Lopera Quintero
 
 Materia: Desarrollo de Aplicaciones Web
 
-Probando para ver si cambia algo
+Ya se puso el index.php en el gitignore
