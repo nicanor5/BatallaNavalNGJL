@@ -133,36 +133,59 @@ class BatallaNaval_Model extends TinyMVC_Model
 		}
 		return $toView;
 	}
-	
+	//100*PW(1+ 1/PJ)
+	/******************************************************
+							DB
+	*******************************************************/
+	function getEnemyFleet($playerID)
+    {	
+    	$this->loadDB();
+    	if ($playerID == 1)
+    	{
+    		$result=$this->db->query_one("SELECT fleet_player2 FROM partida WHERE id=1");
+    		$vector = explode(';', $result['fleet_player2']);
+    	} 
+    	else if($playerID == 2) 
+    	{
+    		$result=$this->db->query_one("SELECT fleet_player1 FROM partida WHERE id=1");
+    		$vector = explode(';', $result['fleet_player1']);
+    	}
+
+        for ($i=0; $i<6; $i++)
+        	$enemyFleet[$i] = explode(' ', $vector[$i]);
+
+        return $enemyFleet;
+    }
+
+    function playerHit($playerID)
+    {
+    	$this->loadDB();
+    	if ($playerID == 1)
+    		$this->db->query("UPDATE partida SET hits_player1=hits_player1+1 WHERE id=? ",array($playerID));
+    	else if($playerID == 2)
+    		$this->db->query("UPDATE partida SET hits_player2=hits_player2+1 WHERE id=? ",array($playerID));
+    }
+    /******************************************************
+							DB
+	*******************************************************/
+
 	function user_play($shotbox)
 	{
+		$playerID = 2;
 		// Obtener indices
 		$i=$shotbox[0];
 		$j=$shotbox[1];
-		
-		// Indicar disparo
-		$userTries=$this->session->obtener('userTries');
-		$userTries++;
-		$this->session->guardar('userTries',$userTries);
-		$fired=$this->session->obtener('fired');
-		$fired[$i][$j]+=2;
-		$this->session->guardar('fired',$fired);
-		
-		// Verificar si se dio a un barco enemigo
-		$enemyFleet=$this->session->obtener('enemyFleet');
-		if ($enemyFleet[$i][$j]==1)
-		{
-			$userHits=$this->session->obtener('userHits');
-			$userHits++;
-			$this->session->guardar('userHits',$userHits);
-			$fired[$i][$j]+=1;
-			$this->session->guardar('fired',$fired);
-			return 1;		
-		}
-		else
-		{
-			return 0;
-		}
+		//obtener la flota enemiga
+		$enemyFleet = $this->getEnemyFleet($playerID);
+		//dependiendo pegó o no fired en 1 o 0
+		if ($enemyFleet[$i][$j] == 1)
+		{	// si dó en el blanco incremente user hits
+			$this->playerHit($playerID);
+			$fired = 1;
+		} else
+			$fired = 0;
+		echo $fired;
+		return $fired;
 	}
 	
 	function check_player()

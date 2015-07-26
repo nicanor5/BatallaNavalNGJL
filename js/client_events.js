@@ -5,7 +5,7 @@ $( document ).ready(function(){
 function fire(event){
 	var field = event.target;
 	alert(field.name+' = '+field.value);
-	$('#'+field.id).replaceWith( '<img src="/Projects/BatallaNavalNGJL/img/water_explotion.png" >' );
+	// $('#'+field.id).replaceWith( '<img src="/Projects/BatallaNavalNGJL/img/water_explotion.png" >' );
 
 	$.ajax({
 		url : "/Projects/BatallaNavalNGJL/batallanaval/play",
@@ -15,7 +15,13 @@ function fire(event){
 		{
 			// alert(data);
 			$('body').append(data);
-			// $('#'+field.id).replaceWith( '<img src="/Projects/BatallaNavalNGJL/img/water_explotion.png" >' );
+			if (data == 1){
+				$('#'+field.id).replaceWith( '<img src="/Projects/BatallaNavalNGJL/img/ship_explotion.png" >' );
+			}
+			else {
+				$('#'+field.id).replaceWith( '<img src="/Projects/BatallaNavalNGJL/img/water_explotion.png" >' );
+			}
+			
 		}
 	});
 }
