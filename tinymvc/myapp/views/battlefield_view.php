@@ -31,8 +31,8 @@
 			?>
 		</table> 
 	</div>
-	<div class="col-md-6">
-		<form method="post" action='<?=TMVC_BASEURL?>/batallanaval/play'>
+	<div class="col-md-6" id="battlefield">
+		<!-- <form method="post" action='<?=TMVC_BASEURL?>/batallanaval/play'> -->
 			<h4> Enemy fleet </h4>
 			<table  border="1">
 				<?php
@@ -57,7 +57,7 @@
 							}
 							if ($toView["fired"][$i][$j]==0)
 							{
-								echo '<input type="radio" name="shotbox" class="styled" value="', $i, $j, '">';
+								echo '<input type="radio" name="shotbox" id="b', $i, $j,'" class="styled battlefield" value="', $i, $j, '">';
 							}
 							else
 							{
@@ -69,10 +69,10 @@
 					}
 				?>
 			</table> 
-			<br>
+			<!-- <br>
 			<button class="btn btn-primary btn-fire" type="submit" value="Fire!">Fire!</button>
 			<input type="hidden" name="activity" value="play_game">
-		</form>
+		</form> -->
 	</div>
 	</div>
 	<div class="row">

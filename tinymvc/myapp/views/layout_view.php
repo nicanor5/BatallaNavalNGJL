@@ -6,6 +6,10 @@
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/bootstrap.min.css'>
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/style.css'>
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/signin.css'>
+		<script src="<?=TMVC_BASEURL?>/js/jquery-1.11.2.js"></script>
+		<script src="<?=TMVC_BASEURL?>/js/pusher.min.js"></script>
+		<script src="<?=TMVC_BASEURL?>/js/pusher_init.js"></script>
+		<script src="<?=TMVC_BASEURL?>/js/client_events.js"></script>	
 	</head>
 	<body>
 		<div class="container">
