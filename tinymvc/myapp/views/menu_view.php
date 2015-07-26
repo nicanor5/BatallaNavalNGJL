@@ -62,7 +62,7 @@
 				<?php 
 				if ($data['type']==0) 
 				{
-					echo '<form method="post" action="<?=TMVC_BASEURL?>/admin/adminMenu">
+					echo '<form method="post" action="' . TMVC_BASEURL . '/admin/adminMenu">
 							<button class="btn " type="submit" value="Admin">Administration menu</button>
 							<input type="hidden" name="activity" value="admin_menu"></form>';
 				}

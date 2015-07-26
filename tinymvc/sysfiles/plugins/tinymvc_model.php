@@ -27,14 +27,14 @@ class TinyMVC_Model
 	 * @access	public
 	 */
   public $db = null;
-  public $session=null;
+  public $sesion=null;
  	/**
 	 * class constructor
 	 *
 	 * @access	public
 	 */
   function __construct($poolname=null) {
-    $this->session=Sesion::obtenerInstancia();
+    $this->sesion=Sesion::obtenerInstancia();
   }
 
   function loadDB($poolname=null) {  	

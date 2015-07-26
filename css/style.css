@@ -26,6 +26,12 @@ td {
 	color: #EEEEEE; 
 }
 
+.btn .btn-primary .btn-admin
+{
+	background-color: #EE0055;
+	color: #EE5555; 
+}
+
 
 
 input[type=checkbox]

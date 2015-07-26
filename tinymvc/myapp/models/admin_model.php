@@ -3,6 +3,7 @@ class Admin_Model extends TinyMVC_Model
 {
 	function __construct()
 	{
+		parent::__construct();
 		define('ENABLED',1);
 		define('DISABLED',0);
 		define('ADMIN',0);
@@ -91,7 +92,7 @@ class Admin_Model extends TinyMVC_Model
 	
 	function validarAdmin()
 	{
-		$userType=$this->session->obtener('userType');
+		$userType=$this->sesion->obtener('userType');
 		
 		if ($userType == ADMIN)
 		{
