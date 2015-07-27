@@ -35,7 +35,7 @@ class Admin_Controller extends TinyMVC_Controller
 		$userID=$this->getParam('id');
 		$admin=new Admin_Model();
 		$toView=$admin->habilitar($userID);
-		print "1";
+		print json_encode($toView);
 		//$this->view->assign('toView',$toView);
 		//$content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
 		//$this->view->assign('content',$content_view);		
@@ -54,7 +54,12 @@ class Admin_Controller extends TinyMVC_Controller
 		//$this->view->assign('content',$content_view);		
 	    //$this->view->display(LAYOUT); 
 	}
-	
+	function adicionar_menu()
+	{
+		$this->view->assign('type',"admin");
+		$content_view = $this->view->fetch('register_view', array('msgerror'=>''));
+		$this->view->display('layout_view',array('content' => $content_view));
+	}
 	function adicionar()
 	{
 		$userData['image']=$this->getFile('fileToUpload');
@@ -76,12 +81,22 @@ class Admin_Controller extends TinyMVC_Controller
 	
 	function eliminar()
 	{
-		$userID=$this->getParam('userID');
+		$userID=$this->getParam('id');
 		$admin=new Admin_Model();
 		$toView=$admin->eliminar($userID);
-		$this->view->assign('toView',$toView);
-		$content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
-		$this->view->assign('content',$content_view);		
-	    $this->view->display(LAYOUT); 
+		print "1";
+		//$this->view->assign('toView',$toView);
+		//$content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
+		//$this->view->assign('content',$content_view);		
+	    //$this->view->display(LAYOUT); 
+	}
+	
+	function volver_menu()
+	{
+		$user = new User_model();
+        $dataU=$user->getData();
+    	$content_view = $this->view->fetch('menu_view',array('data'=>$dataU));
+
+	    $this->view->display(LAYOUT,array('content' => $content_view)); 
 	}
 }

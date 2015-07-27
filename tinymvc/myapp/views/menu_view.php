@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<center>
-					<h2> Welcome admiral <?php echo $data['lastname']; ?> </h2>
+					<h2> Welcome admiral <?php echo htmlspecialchars($data['lastname'], ENT_QUOTES, 'UTF-8'); ?> </h2>
 				</center>
 			</div>
 		</div>
@@ -21,7 +21,15 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="col-md-6">
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post" action='<?=TMVC_BASEURL?>/batallanaval/init_field'>
+					<button class="btn btn-fire" type="submit" value="Start">Set the fleet</button>
+				</form>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<form method="post" action='<?=TMVC_BASEURL?>/users/statistics'>

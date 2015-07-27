@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<center>
 			<h2> 
-				Welcome, admiral <?php if (isset($toView["username"])) echo $toView["username"]; ?>!
+				Welcome, admiral <?php if (isset($toView["username"])) echo htmlspecialchars($toView['username'], ENT_QUOTES, 'UTF-8'); ?>!
 			</h2>
 		</center>
 	</div>

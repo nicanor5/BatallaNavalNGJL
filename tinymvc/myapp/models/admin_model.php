@@ -32,7 +32,8 @@ class Admin_Model extends TinyMVC_Model
 			$this->loadDB();
 			$this->db->where('id', $userID);
 			$this->db->update('users',array('enabled'=>ENABLED));
-			$toView=$this->adminMenu();
+			$toView['retorno']=$this->sendMail($userID,"enabled");
+			//$toView=$this->adminMenu();
 		}
 		else
 		{
@@ -48,7 +49,8 @@ class Admin_Model extends TinyMVC_Model
 			$this->loadDB();
 			$this->db->where('id', $userID);
 			$this->db->update('users',array('enabled'=>DISABLED));
-			$toView=$this->adminMenu();
+			$toView['retorno']=$this->sendMail($userID,"disabled");
+			//$toView=$this->adminMenu();
 		}
 		else
 		{
@@ -87,7 +89,7 @@ class Admin_Model extends TinyMVC_Model
 		{
 			$toView['view']='forbidden_view';
 		}
-		return $toView['view'];
+		return $toView;
 	}
 	
 	function validarAdmin()
@@ -103,6 +105,19 @@ class Admin_Model extends TinyMVC_Model
 			return false;
 		}
 		
+	}
+	
+	function sendMail($userID,$content)
+	{
+		$userMail=$this->db->query_one("SELECT email FROM users WHERE id=?",array(intval($userID)));
+		$mailbody="<html><body>You have been " . $content ." to play Navy Gunship Offensive NG-JL.</body></html>";
+	    $retorno="";
+	    $subject="Navy Gunship Offensive NG-JL: User ". $content;
+		if(mail($userMail['email'],$subject,$mailbody,"Content-Type: text/html"))
+			$retorno = "Email successfully sent";
+		else
+			$retorno = "An error occured";
+		return $retorno;
 	}
 
 

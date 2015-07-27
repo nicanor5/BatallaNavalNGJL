@@ -3,9 +3,6 @@ class BatallaNaval_Model extends TinyMVC_Model
 {
 	function init_field($size)
 	{
-		$this->session->guardar('size',$size);
-		
-		$toView["size"]=$size;
 		$toView["view"]='fleetsetup_view';
 		
 		return $toView;	
@@ -46,7 +43,6 @@ class BatallaNaval_Model extends TinyMVC_Model
 		
 		$userHits=0;
 		$enemyHits=0;
-		$userTries=0;
 		$enemyFleet=$this->set_enemy($size);
 		$this->session->guardar('userFleet',$userFleet);
 		$this->session->guardar('enemyFleet',$enemyFleet);
@@ -54,7 +50,6 @@ class BatallaNaval_Model extends TinyMVC_Model
 		$this->session->guardar('enemyShots',$enemyShots);
 		$this->session->guardar('userHits',$userHits);
 		$this->session->guardar('enemyHits',$enemyHits);
-		$this->session->guardar('userTries',$userTries);
 		
 		
 		
@@ -103,7 +98,6 @@ class BatallaNaval_Model extends TinyMVC_Model
 		$toView["fired"]=$this->session->obtener('fired');
 		if($this->check_player()==1)
 		{
-			$tries=$this->session->obtener('userTries');
 			$id=$this->session->obtener('id');
 			$usuario->won($id);
 			$usuario->finished($id);
@@ -140,13 +134,6 @@ class BatallaNaval_Model extends TinyMVC_Model
 		$i=$shotbox[0];
 		$j=$shotbox[1];
 		
-		// Indicar disparo
-		$userTries=$this->session->obtener('userTries');
-		$userTries++;
-		$this->session->guardar('userTries',$userTries);
-		$fired=$this->session->obtener('fired');
-		$fired[$i][$j]+=2;
-		$this->session->guardar('fired',$fired);
 		
 		// Verificar si se dio a un barco enemigo
 		$enemyFleet=$this->session->obtener('enemyFleet');

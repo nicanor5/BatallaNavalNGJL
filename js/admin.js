@@ -6,7 +6,7 @@ function inicializar()
 	alert("With great power comes great responsibility");
 	$( "#tabla" ).on('click','.Enable',enable);
 	$( "#tabla" ).on('click','.Disable',disable);
-
+	$( "#tabla" ).on('click','.Delete',deleteUser);
 }
 
 function enable(event)
@@ -28,6 +28,7 @@ function enable(event)
 	)
 	.done(function(data)
 			{
+				alert(data.retorno);
 				event.target.innerHTML = "Disable";
 				event.target.className = "Disable";
 			}
@@ -58,5 +59,35 @@ function disable(event)
 				event.target.className = "Enable";
 			}
 	);
+	
+}
+
+function deleteUser(event)
+{
+	
+	// Obtener id del boton presionado
+	var id=event.target.id;
+	
+	
+	// Solo necesito el numero de id
+	var num=id.substring(2);
+	alert("Deleting user " + num);
+	$( "#r" + num ).remove();
+	
+	$.ajax(
+		{
+			url:'/BatallaNavalNGJL/admin/eliminar',
+			method:'post',
+			data:"id="+num,
+			dataType:'json'
+		}
+	)
+	.done(function(data)
+			{
+				
+				alert("User deleted");
+			}
+	);
+	
 	
 }

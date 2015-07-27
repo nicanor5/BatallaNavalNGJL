@@ -28,11 +28,14 @@ class Users_Controller extends TinyMVC_Controller
 				$content_view = $this->view->fetch('menu_view', array('data'=>$dataU,'msgerror'=>'successful'));
 				
 			}
-			else 
+			else
 				$content_view = $this->view->fetch('user_view', array('msgerror'=>'Invalid User'));
 		}
 		else if ($this->getParam('Register')  == true)
-			$content_view = $this->view->fetch('register_view', array('msgerror'=>'It works!!'));
+		{
+			$this->view->assign('type',"user");
+			$content_view = $this->view->fetch('register_view', array('msgerror'=>''));
+		}
 		$this->view->display('layout_view',array('content' => $content_view));
 	}
 
@@ -45,11 +48,12 @@ class Users_Controller extends TinyMVC_Controller
         $userData['name'] = $this->getParam('username');
         $userData['lastname'] = $this->getParam('userlastname');
         $userData['email'] = $this->getParam('email');
+        $type = $this->getParam('type');
 
         $reg= new User_Model();
         $msgerror = $reg->registerUser($userData);
         if ($msgerror == 'ok')
-            $content_view = $this->view->fetch('user_view',array('msgerror'=>$msgerror));
+            $content_view = $this->view->fetch($type . '_view',array('msgerror'=>$msgerror));
         else
             $content_view = $this->view->fetch('register_view',array('msgerror'=>$msgerror));
 

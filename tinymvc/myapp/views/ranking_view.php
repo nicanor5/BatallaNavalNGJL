@@ -14,7 +14,7 @@
 				foreach ($data as $key => $value) 
 				{
 					$order=$key+1;
-					echo "<tr> <td>". $order . " </td> <td>". $value["user"] . " </tr>";
+					echo "<tr> <td>". $order . " </td> <td>".  htmlspecialchars($value["user"], ENT_QUOTES, 'UTF-8')  . " </tr>";
 				}
 			?>
 		</table>

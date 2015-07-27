@@ -143,7 +143,7 @@ class User_Model extends TinyMVC_Model
     {   
         $this->loadDB();
         $data=$this->getData($userID);
-        $ranking = 1000*(1-($data['won']/$data['finished']))+pow(2,$data['avg_moves']);
+        $ranking = 100*$data['won']*(1+1/$data['finished']); //1000*(1-($data['won']/$data['finished']))+pow(2,$data['avg_moves']);
         $this->db->where('id', $userID);         // Setup query conditions
         $result = $this->db->update('users',array('ranking'=>$ranking));
         if($result)
