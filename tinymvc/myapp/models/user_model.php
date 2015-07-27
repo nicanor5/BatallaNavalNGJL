@@ -215,14 +215,4 @@ class User_Model extends TinyMVC_Model
 
         return $msgerror;
     }
-
-    function setPlayer()
-    {
-        $playerID = $this->db->query_one("SELECT player_num FROM partida WHERE id=1");
-        $this->session->guardar('playerID', $playerID);
-        $this->loadDB();
-        $this->db->query("UPDATE partida SET player_num=player_num+1 WHERE id=1");
-        if ($playerID == 1)
-            
-    }
 }

@@ -9,11 +9,7 @@ function fire(event){
 	$.ajax({
 		url : "/Projects/BatallaNavalNGJL/batallanaval/play",
 		type: "POST",
-		data : field.name+'='+field.value,
-		// data : 	{
-		// 			field.name+'='+field.value,
-		// 			playerID=1
-		// 		}
+		data : id=1&field.name+'='+field.value,
 		success: function(data)
 		{
 			$('body').append(data);

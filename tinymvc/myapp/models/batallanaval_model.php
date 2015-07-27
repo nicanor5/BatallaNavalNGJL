@@ -13,7 +13,7 @@ class BatallaNaval_Model extends TinyMVC_Model
 	
 	function init_game($box)
 	{
-		$size=$this->session->obtener('size');
+		$size=6;
 		$cuenta=0;
 		for ($i=0; $i<$size; $i++)
 		{
@@ -62,9 +62,9 @@ class BatallaNaval_Model extends TinyMVC_Model
 		$toView["userHit"]=0;
 		$toView["userFleet"]=$userFleet;
 		$toview["enemyHit"]=0;
-		$toView["fired"]=$fired;
 		$toView["view"]='battlefield_view';
-		
+		$toView["playerID"] = $this->session->obtener('playerID');
+		$this->setPlayer();
 		return $toView;
 	}
 	
@@ -149,8 +149,9 @@ class BatallaNaval_Model extends TinyMVC_Model
 	/******************************************************
 							DB
 	*******************************************************/
-	function getEnemyFleet($playerID)
+	function getEnemyFleet()
     {	
+    	$playerID = $this->session->obtener('playerID');
     	$this->loadDB();
     	if ($playerID == 1)
     	{
@@ -169,13 +170,33 @@ class BatallaNaval_Model extends TinyMVC_Model
         return $enemyFleet;
     }
 
-    function playerHit($playerID)
+    function playerHit()
     {
+    	$playerID = $this->session->obtener('playerID');
     	$this->loadDB();
     	if ($playerID == 1)
     		$this->db->query("UPDATE partida SET hits_player1=hits_player1+1 WHERE id=1");
     	else if($playerID == 2)
     		$this->db->query("UPDATE partida SET hits_player2=hits_player2+1 WHERE id=1");
+    }
+
+    function setPlayer()
+    {
+        $this->loadDB();
+        $result = $this->db->query_one("SELECT player_num FROM partida WHERE id=1");
+        $this->session->guardar('playerID', $result['player_num']);
+        $this->db->query("UPDATE partida SET player_num=player_num+1 WHERE id=1");
+    }
+
+
+    function fire($i, $j, $fired)
+    {
+       	$key='786abf7829cb6f47949d';
+        $secret='09d5d66ca203ce33e292';
+        $app_id='55839c444092470594e8';
+        $playerID = $this->session->obtener('playerID');
+        $pusher = new Pusher($key, $secret, $app_id);
+        $pusher->trigger('batallanaval'.$playerID, 'fired', array('i' => $i, 'j' => $j, 'fired' => $fired));
     }
     /******************************************************
 							DB
@@ -183,19 +204,19 @@ class BatallaNaval_Model extends TinyMVC_Model
 
 	function user_play($shotbox)
 	{
-		$playerID = 2;
 		// Obtener indices
 		$i=$shotbox[0];
 		$j=$shotbox[1];
 		//obtener la flota enemiga
-		$enemyFleet = $this->getEnemyFleet($playerID);
+		$enemyFleet = $this->getEnemyFleet();
 		//dependiendo pegó o no fired en 1 o 0
 		if ($enemyFleet[$i][$j] == 1)
 		{	// si dó en el blanco incremente user hits
-			$this->playerHit($playerID);
+			$this->playerHit();
 			$fired = 1;
 		} else
 			$fired = 0;
+		$this->fire($i, $j, $fired);
 		echo $fired;
 		return $fired;
 	}

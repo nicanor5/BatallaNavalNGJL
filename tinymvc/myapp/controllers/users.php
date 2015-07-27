@@ -22,7 +22,6 @@ class Users_Controller extends TinyMVC_Controller
 			if($usuario->esValido($user,$password))
 			{
 				$userID = $usuario->getUserID($user,$password);
-				$usuario->setPlayer();
 				$dataU = $usuario->getData($user,$password); 
 				$content_view = $this->view->fetch('menu_view', array('data'=>$dataU,'msgerror'=>'successful'));
 				
