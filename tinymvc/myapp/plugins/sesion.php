@@ -9,7 +9,6 @@ class Sesion
 		session_start();
 		
 	}
-
 	
 	public static function obtenerInstancia()
 	{

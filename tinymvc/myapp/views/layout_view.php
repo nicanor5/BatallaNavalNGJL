@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/bootstrap.min.css'>
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/style.css'>
 		<link rel="stylesheet" type="text/css" href='<?=TMVC_BASEURL?>/css/signin.css'>
+		<script src='<?=TMVC_BASEURL?>/js/jquery-1.11.2.js'></script>
 	</head>
 	<body>
 		<div class="container">

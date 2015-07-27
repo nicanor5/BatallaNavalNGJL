@@ -31,10 +31,10 @@ if(!defined('TMVC_BASEDIR'))
 
 /* set the base url */
 if(!defined('TMVC_BASEURL'))
-  define('TMVC_BASEURL','/Projects/BatallaNavalMVC');
+  define('TMVC_BASEURL','/BatallaNavalNGJL');
 
 if(!defined('FULL_PATH_IMG'))
-  define('FULL_PATH_IMG','C:\wamp\www\Projects\BatallaNavalMVC\img\\');
+  define('FULL_PATH_IMG','/var/www/html/BatallaNavalNGJL/img/');
 
 /* include main tmvc class */
 require(TMVC_BASEDIR . 'sysfiles' . DS . 'TinyMVC.php');
@@ -42,7 +42,6 @@ require(TMVC_BASEDIR . 'sysfiles' . DS . 'TinyMVC.php');
 /* instantiate */
 $tmvc = new tmvc();
 
-// Esto es una prueba
-
 /* tally-ho! */
 $tmvc->main();
+

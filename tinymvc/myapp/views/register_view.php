@@ -25,7 +25,7 @@
 	<label for="fileToUpload" class="sr-only">Image</label>
 	<input type="file" name="fileToUpload" accept="image/*" id="fileToUpload" class="form-control" placeholder="Image" required>
 	<!-- <input type='file' name='archivo_up' id="archivo_up" multiple=""> -->
-
+	<input type="hidden" name="type" value="<?php echo $type?>">
 	<button class="btn btn-lg btn-primary btn-block" type="submit" name="Reg" value="true">Sign In</button>
 </form>
 <?php if(isset($msgerror)) echo $msgerror; ?>
