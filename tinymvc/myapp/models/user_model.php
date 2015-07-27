@@ -155,7 +155,7 @@ class User_Model extends TinyMVC_Model
     function getRankingTable()
     {
         $this->loadDB();
-        $result=$this->db->query_all("SELECT user FROM users ORDER BY ranking ASC");
+        $result=$this->db->query_all("SELECT user FROM users ORDER BY ranking DESC");
         return $result;
 
     }

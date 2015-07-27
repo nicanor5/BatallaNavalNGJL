@@ -54,9 +54,14 @@ class Users_Controller extends TinyMVC_Controller
         $reg= new User_Model();
         $msgerror = $reg->registerUser($userData);
         if ($msgerror == 'ok')
+        {
             $content_view = $this->view->fetch($type . '_view',array('msgerror'=>$msgerror));
+        }
         else
+        {
+        	$this->view->assign('type',$type);
             $content_view = $this->view->fetch('register_view',array('msgerror'=>$msgerror));
+        }
 
         $this->view->display('layout_view',array('content' => $content_view));
 	}

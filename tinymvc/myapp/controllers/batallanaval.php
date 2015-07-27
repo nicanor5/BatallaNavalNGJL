@@ -22,7 +22,7 @@ class BatallaNaval_Controller extends TinyMVC_Controller
 	function init_field()
 	{	
 		$batalla=new BatallaNaval_Model();
-		$size=$this->getParam('size');
+		$size=6; //$this->getParam('size');
 		$toView=$batalla->init_field($size);
 		$this->view->assign('toView',$toView);
 		$content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
