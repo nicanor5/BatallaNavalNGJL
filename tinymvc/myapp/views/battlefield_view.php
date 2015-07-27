@@ -3,10 +3,10 @@
 		<h4> Your fleet </h4>
 		<table border="1">
 			<?php				
-				for ($i=0;$i<$toView["size"];$i++)
+				for ($i=0;$i<6;$i++)
 				{
 					echo "<tr>";
-					for ($j=0; $j<$toView["size"];$j++)
+					for ($j=0; $j<6;$j++)
 					{
 						switch ($toView["userFleet"][$i][$j])
 						{
@@ -37,10 +37,10 @@
 			<table  border="1">
 				<?php
 					
-					for ($i=0;$i<$toView["size"];$i++)
+					for ($i=0;$i<6;$i++)
 					{
 						echo "<tr>";
-						for ($j=0; $j<$toView["size"];$j++)
+						for ($j=0; $j<6;$j++)
 						{
 							echo "<td>";
 							switch ($toView["fired"][$i][$j])

@@ -45,6 +45,6 @@
 </div>
 <div class="row">
 	<form method="post" action='<?=TMVC_BASEURL?>/users/menu'>
-		<button class="btn " type="submit" value="Menu">Menu</button>
+		<button class="btn btn-primary" type="submit" value="Menu">Menu</button>
 	</form>
 </div>

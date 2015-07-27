@@ -97,7 +97,7 @@ class User_Model extends TinyMVC_Model
                 //|| $imageFileType == "gif"  
                 {  if (move_uploaded_file($data['image']["tmp_name"], $target_file)) 
                     {
-                        echo "The file ". basename( $data['image']["name"]). " has been uploaded in .".$target_file.".";
+                        $msgerror= "The file ". basename( $data['image']["name"]). " has been uploaded in .".$target_file.".";
                     } 
                     else 
                         $msgerror = "Sorry, there was an error uploading your file.";
@@ -190,7 +190,7 @@ class User_Model extends TinyMVC_Model
                         // || $imageFileType == "gif" ) 
                         {  if (move_uploaded_file($data['image']["tmp_name"], $target_file)) 
                             {
-                                echo "The file ". basename( $data['image']["name"]). " has been uploaded in .".$target_file.".";
+                                $msgerror = "The file ". basename( $data['image']["name"]). " has been uploaded in .".$target_file.".";
                                 // Here we add all data related with user
                                 $this->addUser($data['user'], $data['pass'], $data['name'], $data['lastname'], $data['email']);
                                 $registration = 1;

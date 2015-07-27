@@ -92,7 +92,7 @@ class Admin_Model extends TinyMVC_Model
 		return $toView;
 	}
 	
-	function validarAdmin()
+	private function validarAdmin()
 	{
 		$userType=$this->sesion->obtener('userType');
 		
@@ -107,7 +107,7 @@ class Admin_Model extends TinyMVC_Model
 		
 	}
 	
-	function sendMail($userID,$content)
+	private function sendMail($userID,$content)
 	{
 		$userMail=$this->db->query_one("SELECT email FROM users WHERE id=?",array(intval($userID)));
 		$mailbody="<html><body>You have been " . $content ." to play Navy Gunship Offensive NG-JL.</body></html>";

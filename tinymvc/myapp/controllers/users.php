@@ -13,6 +13,7 @@ class Users_Controller extends TinyMVC_Controller
 {
 	function validar()
 	{
+		
 		if ($this->getParam('Login')  == true)
 		{
 			Sesion::obtenerInstancia()->crearSesion();
@@ -25,7 +26,7 @@ class Users_Controller extends TinyMVC_Controller
 				$userID = $usuario->getUserID($user,$password);
 				// $usuario->won($userID);
 				$dataU = $usuario->getData($user,$password); 
-				$content_view = $this->view->fetch('menu_view', array('data'=>$dataU,'msgerror'=>'successful'));
+				$content_view = $this->view->fetch('menu_view', array('data'=>$dataU,'msgerror'=>''));
 				
 			}
 			else
