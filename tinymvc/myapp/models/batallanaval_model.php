@@ -94,13 +94,25 @@ class BatallaNaval_Model extends TinyMVC_Model
 		return $enemyFleet;
 	}
 
-	function play_game($shotbox)
+	function play_game($shotbox)	//necesita el id
 	{
 		$usuario = new User_Model();
+		// mirar si el enemigo ya ganó
+		// juague
+		// mire si ud ganó
+		// notifique al enemigo que ud acabó de jugar y si ganó o no (desbloqueando los botones)
+
+
+
+
+
+
+
+		
 		$toView["view"]='battlefield_view';
-		$toView["size"]=$this->session->obtener('size');
-		$toView["userHit"]=$this->user_play($shotbox);
-		$toView["fired"]=$this->session->obtener('fired');
+		// $toView["size"]=$this->session->obtener('size');
+		$toView["userHit"]=$this->user_play($shotbox); //hay que pasar el id
+		// $toView["fired"]=$this->session->obtener('fired');	//no needed
 		if($this->check_player()==1)
 		{
 			$tries=$this->session->obtener('userTries');
@@ -109,28 +121,28 @@ class BatallaNaval_Model extends TinyMVC_Model
 			$usuario->finished($id);
 			$usuario->avgMoves($id,$tries);
 			$usuario->setRanking($id);
-			$toView["enemyFleet"]=$this->session->obtener('enemyFleet');
+			// $toView["enemyFleet"]=$this->session->obtener('enemyFleet');
 			$toView["winner"]=1;
-			$toView["userHits"]=$this->session->obtener('userHits');
-			$toView["enemyHits"]=$this->session->obtener('enemyHits');
+			// $toView["userHits"]=$this->session->obtener('userHits');
+			// $toView["enemyHits"]=$this->session->obtener('enemyHits');
 			$toView["view"]="results_view";
 			return $toView;
 		}
-		$toView["enemyHit"]=$this->enemy_play();
-		$toView["userFleet"]=$this->session->obtener('userFleet');
-		if($this->check_enemy()==1)
-		{
-			$id=$this->session->obtener('id');
-			$usuario->lost($id);
-			$usuario->finished($id);
-			$usuario->setRanking($id);
-			$toView["enemyFleet"]=$this->session->obtener('enemyFleet');
-			$toView["winner"]=2;
-			$toView["userHits"]=$this->session->obtener('userHits');
-			$toView["enemyHits"]=$this->session->obtener('enemyHits');
-			$toView["view"]='results_view';
-			return $toView;
-		}
+		// $toView["enemyHit"]=$this->enemy_play();
+		// $toView["userFleet"]=$this->session->obtener('userFleet');
+		// if($this->check_enemy()==1)
+		// {
+		// 	$id=$this->session->obtener('id');
+		// 	$usuario->lost($id);
+		// 	$usuario->finished($id);
+		// 	$usuario->setRanking($id);
+		// 	// $toView["enemyFleet"]=$this->session->obtener('enemyFleet');
+		// 	$toView["winner"]=2;
+		// 	// $toView["userHits"]=$this->session->obtener('userHits');
+		// 	// $toView["enemyHits"]=$this->session->obtener('enemyHits');
+		// 	$toView["view"]='results_view';
+		// 	return $toView;
+		// }
 		return $toView;
 	}
 	//100*PW(1+ 1/PJ)
@@ -161,9 +173,9 @@ class BatallaNaval_Model extends TinyMVC_Model
     {
     	$this->loadDB();
     	if ($playerID == 1)
-    		$this->db->query("UPDATE partida SET hits_player1=hits_player1+1 WHERE id=? ",array($playerID));
+    		$this->db->query("UPDATE partida SET hits_player1=hits_player1+1 WHERE id=1");
     	else if($playerID == 2)
-    		$this->db->query("UPDATE partida SET hits_player2=hits_player2+1 WHERE id=? ",array($playerID));
+    		$this->db->query("UPDATE partida SET hits_player2=hits_player2+1 WHERE id=1");
     }
     /******************************************************
 							DB

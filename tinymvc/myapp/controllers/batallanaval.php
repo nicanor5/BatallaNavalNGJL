@@ -35,9 +35,9 @@ class BatallaNaval_Controller extends TinyMVC_Controller
 		$batalla=new BatallaNaval_Model();
 		$box=$this->getParam('box');
 		$toView=$batalla->init_game($box);
+		$toView["playerID"] = 1;		// ESTO TIENE QUE IR DENTRO DE LA SESION UNA VEZ EL USUARIO INICIE
 		$this->view->assign('toView',$toView);
 		$content_view = $this->view->fetch($toView["view"], array('msgerror'=>''));
-		//$this->view->assign('content',$content_view);		
 	    $this->view->display(LAYOUT,array('content' => $content_view)); 
 	}
 
@@ -45,14 +45,13 @@ class BatallaNaval_Controller extends TinyMVC_Controller
 	{
 		$batalla=new BatallaNaval_Model();
 		$shotbox=$this->getParam('shotbox');
-		// var_dump($shotbox);
 		$toView=$batalla->play_game($shotbox);
-		// var_dump($toView);
+		if ($toView['win'] == 1){
+			$this->view->assign('toView',$toView);
+			$content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
+			$this->view->display(LAYOUT,array('content' => $content_view));  
 
-		// $this->view->assign('toView',$toView);
-		// $content_view = $this->view->fetch($toView["view"], array('msgerror'=>' '));
-		// //$this->view->assign('content',$content_view);		
-	 //    $this->view->display(LAYOUT,array('content' => $content_view));  
+		}
 	}
 	
 	function restart()

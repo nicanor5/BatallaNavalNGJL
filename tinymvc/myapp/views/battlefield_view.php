@@ -1,12 +1,13 @@
+<script src='<?=TMVC_BASEURL?>/js/client_events<?=$toView['playerID']?>.js'></script>
 <div class="row">
 	<div class="col-md-6">
 		<h4> Your fleet </h4>
 		<table border="1">
 			<?php				
-				for ($i=0;$i<$toView["size"];$i++)
+				for ($i=0;$i<6;$i++)
 				{
 					echo "<tr>";
-					for ($j=0; $j<$toView["size"];$j++)
+					for ($j=0; $j<6;$j++)
 					{
 						switch ($toView["userFleet"][$i][$j])
 						{
@@ -32,47 +33,22 @@
 		</table> 
 	</div>
 	<div class="col-md-6" id="battlefield">
-		<!-- <form method="post" action='<?=TMVC_BASEURL?>/batallanaval/play'> -->
-			<h4> Enemy fleet </h4>
-			<table  border="1">
-				<?php
-					
-					for ($i=0;$i<$toView["size"];$i++)
+		<h4> Enemy fleet </h4>
+		<table  border="1">
+			<?php
+				for ($i=0;$i<6;$i++)
+				{
+					echo "<tr>";
+					for ($j=0; $j<6;$j++)
 					{
-						echo "<tr>";
-						for ($j=0; $j<$toView["size"];$j++)
-						{
-							echo "<td>";
-							switch ($toView["fired"][$i][$j])
-							{
-								case 0:
-									$imageEnemy='sea';
-									break;
-								case 2:
-									$imageEnemy='water_explotion';
-									break;
-								case 3:
-									$imageEnemy='ship_explotion';
-									break;
-							}
-							if ($toView["fired"][$i][$j]==0)
-							{
-								echo '<input type="radio" name="shotbox" id="b', $i, $j,'" class="styled battlefield" value="', $i, $j, '">';
-							}
-							else
-							{
-								echo '<img src="', TMVC_BASEURL,'/img/', $imageEnemy, '.png" >';
-							}
-							echo "</td>";
-						}
-						echo "</tr>";
+						echo "<td>";
+						echo '<input type="radio" name="shotbox" id="b', $i, $j,'" class="styled battlefield" value="', $i, $j, '">';
+						echo "</td>";
 					}
-				?>
-			</table> 
-			<!-- <br>
-			<button class="btn btn-primary btn-fire" type="submit" value="Fire!">Fire!</button>
-			<input type="hidden" name="activity" value="play_game">
-		</form> -->
+					echo "</tr>";
+				}
+			?>
+		</table> 
 	</div>
 	</div>
 	<div class="row">
